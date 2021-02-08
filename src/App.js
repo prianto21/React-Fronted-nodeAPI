@@ -20,6 +20,7 @@ const App = () => {
         <Route exact path="/mahasiswa" component={ListComponent} />
         <Route exact path="/mahasiswa/tambah" component={FormTambahComponent} />
         <Route exact path="/mahasiswa/edit" component={EditComponent} />
+        
         {/* <Route exact path="/detail/:id" component={DetailComponent} /> */}
       </Switch>
     </BrowserRouter>
