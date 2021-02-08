@@ -20,13 +20,13 @@ const api='http://localhost:3001/'
              display:'none'
         }
     }
-    
+    //fungtion untuk mengubah input
     handleChange=(e)=>{
         this.setState({
             [e.target.name] : e.target.value
         })
     }
-
+    // menambahkan data mahasiswa
     addMahasiswa=()=>{
         axios.post(api+'tambah',{
             nim:this.state.nim,

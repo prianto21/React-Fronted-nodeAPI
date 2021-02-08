@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import qs from 'querystring'
 import {Table,Button,Container,NavLink,Alert} from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 const api='http://localhost:3001/'
 class ListComponent extends Component {
@@ -45,7 +46,21 @@ class ListComponent extends Component {
                                 <td>{mahasiswa.nim}</td>
                                 <td>{mahasiswa.nama}</td>
                                 <td>{mahasiswa.jurusan}</td>
-                                <td>Edit || Delete</td>
+                                <td>
+                                    <Link to={
+                                        {
+                                            pathname:'mahasiswa/edit',
+                                            state:{
+                                                id_mahasiswa:mahasiswa.id_mahasiswa,
+                                                nim:mahasiswa.nim,
+                                                nama:mahasiswa.nama,
+                                                jurusan:mahasiswa.jurusan
+                                            }
+                                        }
+                                    }>
+                                        <Button>Edit</Button>
+                                    </Link>
+                                </td>
 
                             </tr>
                             )}
