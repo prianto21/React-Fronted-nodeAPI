@@ -31,6 +31,16 @@ const NavbarComponent = (props) => {
             <NavItem>
               <NavLink href="/mahasiswa">Mahasiswa</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/kelas">Kelas</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/hooks">Hooks</NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink href="/hookUseEffect">Hook Use Effect</NavLink>
+            </NavItem>
             
           </Nav>
           <NavbarText>Simple Text</NavbarText>

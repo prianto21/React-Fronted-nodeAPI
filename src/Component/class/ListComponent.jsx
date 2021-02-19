@@ -35,7 +35,7 @@ class ListComponent extends Component {
         data: data,
         headers: { "Content-type": "aplication/x-www-form-urlencoded" },
       })
-      .then((json) => {
+      .then((json) => { 
         if (json.data.status === 200) {
           this.setState({
             response: json.data.values,
