@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import React ,{useState,createContext,useReducer} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import EditComponent from "./Component/class/EditComponent";
@@ -13,11 +13,39 @@ import HookReducer from "./Component/Hooks/fungsional/HookReducer";
 import Hooks from "./Component/Hooks/fungsional/Hooks";
 import HookUseEffect from "./Component/Hooks/fungsional/HookUseEffect";
 import ProductComp from "./Component/Hooks/fungsional/ProductComp";
+import Tagihan from "./Component/Hooks/fungsional/Tagihan";
 // import Menu from './Component/class/Menu'
 // import Parent from './Component/class/Parent'
 // import Home from './Component/fungsional/Home'
+export const KeranjangContext=createContext()
+const initialState = {
+  jumlah: 1,
+  hargasatuan: 10000,
+  hargatotal: 0,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'tambah':
+      return {
+        ...state,
+        jumlah: state.jumlah + 1,
+        hargatotal:state.hargasatuan + (state.hargasatuan* state.jumlah)
+      };
+    case 'kurang':
+      return {
+        ...state,
+        jumlah: state.jumlah - 1,
+        hargatotal:(state.hargasatuan* state.jumlah) - state.hargasatuan
+      };
+    default:
+      return state;
+  }
+};
+
 const App = () => {
   const [value,setValue]=useState(0)
+  const [count, dispatch] = useReducer(reducer, initialState);
   return (
     <BrowserRouter>
     
@@ -25,6 +53,7 @@ const App = () => {
 
     
       <NavbarComponent />
+      <KeranjangContext.Provider value={{KeranjangState:count , KeranjangDispatch:dispatch }}>
       <Switch>
         <Route exact path="/" component={HomeComponent} />
         <Route exact path="/about" component={AboutComponent} />
@@ -36,8 +65,10 @@ const App = () => {
         <Route exact path="/hookUseEffect" component={HookUseEffect} />
         <Route exact path="/produk" component={ProductComp} />
         <Route exact path="/reducer" component={HookReducer} />
+        <Route exact path="/tagihan" component={Tagihan} />
         {/* <Route exact path="/detail/:id" component={DetailComponent} /> */}
       </Switch>
+      </KeranjangContext.Provider>
       </CartContext.Provider>
     </BrowserRouter>
   );
