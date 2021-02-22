@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Jumbotron, Button, Container, Row, Col } from 'reactstrap';
+import { CartContext } from '../../CartContext';
 import CardComponent from './CardComponent';
 const AboutComponent=()=> {
+  // const dataContext=useContext(CartContext)
     return (
         <div>
         <Jumbotron>
